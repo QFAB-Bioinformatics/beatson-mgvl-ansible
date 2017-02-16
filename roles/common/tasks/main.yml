@@ -1,0 +1,85 @@
+---
+
+- name: Make the hostname reboot-safe (Ubuntu 14.04)
+  template: src=fix-hostname.conf.j2 dest=/etc/init/fix-hostname.conf
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "14.04"
+
+- name: Remove the Upstart config for reboot-safe hostnames (Ubuntu 16.04)
+  file: path=/etc/init/fix-hostname.conf state=absent
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "16.04"
+
+- name: Install the fix-hostname service, for reboot-safe hostnames (Ubuntu 16.04) [1/2]
+  template: src=fix-hostname.service.j2 dest=/etc/systemd/system/fix-hostname.service
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "16.04"
+
+- name: Enable the fix-hostname service (Ubuntu 16.04) [2/2]
+  service: name=fix-hostname.service enabled=yes
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "16.04"
+
+- name: Set the server's hostname (Ubuntu != 16.04)
+  hostname: name="{{ inventory_hostname }}"
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version != "16.04"
+
+- name: Add user ssh keys
+  authorized_key: user="{{ item.name }}" key="{{ lookup('file', '../' + item.key) }}"
+  with_items: "{{ users }}"
+  when: item.key is defined
+  tags:
+    - users
+    - keys
+
+- name: Remove user ssh keys
+  authorized_key: user="{{ item.name }}" key="{{ lookup('file', '../' + item.delete_key) }}" state=absent
+  with_items: "{{ users }}"
+  when: item.delete_key is defined
+  tags:
+    - users
+    - keys
+
+  name: Disable SSH password logins
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^#?PasswordAuthentication" line="PasswordAuthentication no"
+  notify: Restart sshd
+  tags: ssh
+
+- name: Upload the SSH banner
+  copy: dest=/etc/ssh/ssh_banner src=../files/ssh_banner
+  tags: ssh
+
+- name: Set the SSH banner
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^#?Banner" line="Banner /etc/ssh/ssh_banner"
+  notify: Restart sshd
+  tags: ssh
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=900
+  tags: apt
+
+- name: Install common packages
+  apt: name="{{ item }}" state=present
+  with_items:
+    - tmux
+    - vim
+    - zsh
+    - logrotate
+  tags:
+    - apt
+
+- include: vim.yml
+
+- name: Add Logrotate to cron table
+  cron: name="run logrotate" minute="0" hour="1" job="/usr/sbin/logrotate /etc/logrotate.conf > /dev/null 2>&1"
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "14.04"
+
+# Set max file open limit (soft and hard) for non-root users
+- pam_limits:
+    domain: '*'
+    limit_type: '-'
+    limit_item: nofile
+    value: 524288
+
+# Set max file open limit (soft and hard) for root user (Ubuntu requirement)
+- pam_limits:
+    domain: 'root'
+    limit_type: '-'
+    limit_item: nofile
+    value: 524288

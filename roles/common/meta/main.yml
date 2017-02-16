@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Thom Cuddihy
+  description: Common setup items for GVL NeCTAR instances
+  company: QFAB
+  license: Proprietary
+  min_ansible_version: 1.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 14.04
+        - 16.04
+
+  categories:
+    - web
+

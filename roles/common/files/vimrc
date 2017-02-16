@@ -1,0 +1,10 @@
+set nocompatible
+syntax enable
+colorscheme monokai
+set background=dark
+set whichwrap+=<,>,[,]
+set autoindent
+set softtabstop=4
+set expandtab
+set number
+set backspace=indent,eol,start

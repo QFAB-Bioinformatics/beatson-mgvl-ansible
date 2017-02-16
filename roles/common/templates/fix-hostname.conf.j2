@@ -1,0 +1,23 @@
+# ===========================================================================
+# ===== !!! WARNING !!! WARNING !!! WARNING !!! WARNING !!! WARNING !!! =====
+# ===========================================================================
+# === This script is managed by Ansible! Any manual changes will be lost! ===
+# ===========================================================================
+#
+# This config is a modified version of /etc/init/hostname.conf (Ubuntu's stock
+# Upstart config for setting the hostname). It was written to work around OpenVZ
+# truncating a container's hostname, on every reboot, to the section before the
+# first dot - this way, hostnames are reboot-safe! It runs after the "hostname"
+# Upstart config.
+#
+# This script was written for Poniverse.
+
+description     "set system hostname properly and correctly"
+
+start on started hostname
+
+task
+script
+  echo "{{ inventory_hostname }}" > /etc/hostname
+  hostname -b -F /etc/hostname
+end script

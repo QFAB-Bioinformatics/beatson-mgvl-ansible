@@ -1,0 +1,20 @@
+- name: Copy vimrc
+  become: true
+  become_user: "{{ item.name }}"
+  copy: src=vimrc dest=~/.vimrc
+  with_items: "{{ users }}"
+  tags: role::common::vim
+
+- name: Ensure Vim colors directory exists
+  become: true
+  become_user: "{{ item.name }}"
+  file: path=~/.vim/colors/ state=directory recurse=true
+  with_items: "{{ users }}"
+  tags: role::common::vim
+
+- name: Copy Vim color scheme
+  become: true
+  become_user: "{{ item.name }}"
+  copy: src=monokai.vim dest=~/.vim/colors/monokai.vim
+  with_items: "{{ users }}"
+  tags: role::common::vim
