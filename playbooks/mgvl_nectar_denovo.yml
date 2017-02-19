@@ -2,8 +2,8 @@
   remote_user: ubuntu
   vars:
     galaxy_tools_tool_list_files:
-    - "files/tool_list_all.yaml"
-    - "files/tool_list_denovo.yaml"
+    - "../files/tool_list_all.yaml"
+    - "../files/tool_list_denovo.yaml"
     galaxy_tools_galaxy_instance_url: http://127.0.0.1:8080/
   roles:
     - ../roles/common

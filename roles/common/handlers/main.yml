@@ -2,4 +2,7 @@
 # handlers file for common
 
 - name: Restart sshd
-  service: name=ssh state=restarted
+  sudo: yes
+  service: 
+    name: ssh
+    state: restarted
