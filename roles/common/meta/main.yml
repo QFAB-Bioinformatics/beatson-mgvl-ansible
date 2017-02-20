@@ -3,7 +3,7 @@ galaxy_info:
   author: Thom Cuddihy
   description: Common setup items for GVL NeCTAR instances
   company: QFAB
-  license: Proprietary
+  license: MIT
   min_ansible_version: 1.2
   platforms:
     - name: Ubuntu

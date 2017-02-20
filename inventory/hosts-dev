@@ -1,4 +1,4 @@
-[Standard]
+[standard]
 dev01.beatson.mgvl ansible_ssh_host=203.101.228.224
 
 [denovo]
