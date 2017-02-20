@@ -1,13 +1,4 @@
 ---
-#- name: Unlink brew packages
-#  homebrew: name={{ item.name }}
-#            state=unlinked
-#            path={{ linuxbrew_path }}
-#  with_items: "{{ linuxbrew_packages }}"
-#  environment:
-#    PATH: "{{ linuxbrew_home }}/.linuxbrew/bin:{{ ansible_env.PATH }}"
-#  sudo: no
-
 - name: Install brew packages (CLI)
   shell: (brew unlink {{ item.name }} || true) && brew install {{ item.path }}
   args:
@@ -15,12 +6,9 @@
   with_items: "{{ linuxbrew_packages }}"
   environment:
     PATH: "{{ linuxbrew_home }}/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  register: brew
 
-#- name: Re-link brew packages
-#  homebrew: name={{ item.name }}
-#            state=linked
-#            path={{ linuxbrew_path }}
-#  with_items: "{{ linuxbrew_packages }}"
-#  environment:
-#    PATH: "{{ linuxbrew_home }}/.linuxbrew/bin:{{ ansible_env.PATH }}"
-#  sudo: no
+  - name: Relink any failed brew installs (CLI)
+    shell: (brew link {{ item.item.name }} || true)
+    when: item.rc != 0
+    with_items: "{{ brew.results }}"
