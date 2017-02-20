@@ -4,11 +4,19 @@
   args:
     creates: "{{ linuxbrew_home }}/.linuxbrew/Cellar/{{ item.name }}/{{ item.version }}"
   with_items: "{{ linuxbrew_packages }}"
+  ignore_errors: yes
   environment:
     PATH: "{{ linuxbrew_home }}/.linuxbrew/bin:{{ ansible_env.PATH }}"
   register: brew
 
-  - name: Relink any failed brew installs (CLI)
-    shell: (brew link {{ item.item.name }} || true)
-    when: item.rc != 0
-    with_items: "{{ brew.results }}"
+- name: Relink any failed brew installs (CLI)
+  shell: (brew link {{ item.item.name }} || true) && echo {{ item.stderr }} {{ item.stdout }} >> ~/brew.install.log
+  ignore_errors: yes
+  when: item.rc != 0
+  with_items: "{{ brew.results }}"
+
+- name: Verify brew versions installed
+  shell: echo "{{ item.name }} {{ item.version }} not installed" && false
+  args:
+    creates: "{{ linuxbrew_home }}/.linuxbrew/Cellar/{{ item.name }}/{{ item.version }}"
+  with_items: "{{ linuxbrew_packages }}"
