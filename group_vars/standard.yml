@@ -137,10 +137,10 @@ linuxbrew_packages:
     name: python3
     version: 3.5.2_3
     path: https://raw.githubusercontent.com/Linuxbrew/homebrew-core/4ac0f3785f2899cab6b65feae7ff4bfbb717ca9c/Formula/python3.rb
--
-    name: curl
-    version: 7.48.0
-    path: https://raw.githubusercontent.com/Linuxbrew/homebrew-core/4c33086bdf7f1899210b8f17332ee27491ed06c2/Formula/curl.rb
+#- #-  # catch-22 when installing this one; need it to install!
+#    name: curl
+#    version: 7.48.0
+#    path: https://raw.githubusercontent.com/Linuxbrew/homebrew-core/4c33086bdf7f1899210b8f17332ee27491ed06c2/Formula/curl.rb
 -
     name: numpy
     version: 1.12.0
@@ -161,10 +161,10 @@ linuxbrew_packages:
     name: bzip2
     version: 1.0.6_1
     path: https://raw.githubusercontent.com/Linuxbrew/homebrew-core/5125e43dd3751c2a2eaf08ba1f0989c740a28081/Formula/bzip2.rb
--
-    name: openssl
-    version: 1.0.2j
-    path: https://raw.githubusercontent.com/Linuxbrew/homebrew-core/54437808052926d6e8d61fa6dddfb5d0ff44e1e8/Formula/openssl.rb
+#-  # catch-22 when installing this one; need it to install!
+#    name: openssl
+#    version: 1.0.2j
+#    path: https://raw.githubusercontent.com/Linuxbrew/homebrew-core/54437808052926d6e8d61fa6dddfb5d0ff44e1e8/Formula/openssl.rb
 -
     name: boost
     version: 1.60.0_2

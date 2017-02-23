@@ -1,6 +1,6 @@
 ---
 - name: Install brew packages (CLI)
-  shell: (brew unlink {{ item.name }} || true) && brew install {{ item.path }}
+  shell: (brew unlink {{ item.name }} || true) && (brew install {{ item.path }} || brew link {{ item.name }})
   args:
     creates: "{{ linuxbrew_home }}/.linuxbrew/Cellar/{{ item.name }}/{{ item.version }}"
   with_items: "{{ linuxbrew_packages }}"
