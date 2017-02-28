@@ -1,3 +1,3 @@
 [submodule "library"]
-path = library
-url = https://github.com/QFAB-Bioinformatics/qfab-ansible-modules
+	path = library
+	url = https://github.com/QFAB-Bioinformatics/qfab-ansible-modules.git
