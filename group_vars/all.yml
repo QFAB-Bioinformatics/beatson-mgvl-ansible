@@ -1,0 +1,33 @@
+---
+conda:
+  path: /mnt/gvl/apps/anaconda_ete/bin
+  environments:
+  - 
+    name: stats1
+    state: present
+    channels: 
+      - iuc
+      - javascript
+    dependencies:
+      - python=3.4
+      - bokeh
+      - nodejs
+      - flask
+  -
+    name: stats2
+    state: present
+    channels:
+      - javascript
+      - bioconda
+    dependencies:
+      - numpy
+      - flask
+  - 
+    name: stats1
+    state: absent
+    dependencies:
+      - bokeh
+  remove:
+  -
+    name: test
+    state: remove_env

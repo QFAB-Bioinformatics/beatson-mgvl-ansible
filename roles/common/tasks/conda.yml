@@ -1,0 +1,27 @@
+---
+# For states "present" and "absent"
+# Requires name, state and dependencies
+- name: Process Conda environments
+  conda:
+    name: "{{ item.name }}"
+    path: "{{ conda.path }}"
+    state: "{{ item.state }}"
+    channels: "{{ item.channels | default('') }}"
+    dependencies: "{{ item.dependencies }}"
+  with_items: "{{ conda.environments }}"
+  tags: conda
+
+# separated, due to seriousness of removal
+- name: Remove Conda environments
+  conda:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ conda.remove }}"
+  tags: conda
+
+# Normally run this first! I'm doing this to test functionality on old Conda versions
+# What's your excuse? :P
+- name: Update Conda package manager
+  conda:
+    update_conda: true
+  tags: conda

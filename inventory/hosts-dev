@@ -1,5 +1,5 @@
 [standard]
-dev01.beatson.mgvl ansible_ssh_host=203.101.228.224
+dev01.beatson.mgvl ansible_ssh_host=203.101.230.89
 
 [denovo]
-dev02.beatson.mgvl ansible_ssh_host=203.101.228.56
+dev02.beatson.mgvl ansible_ssh_host=203.101.230.98
