@@ -1,11 +1,11 @@
 ---
 - name: Set the server's hostname
-  sudo: yes
+  become: true
   hostname: name="{{ inventory_hostname }}"
   when: ansible_distribution == "Ubuntu"
 
 - name: Update hosts file
-  sudo: yes
+  become: true
   lineinfile: 
     dest: /etc/hosts
     regexp: '^127\.0\.0\.1'
@@ -28,29 +28,29 @@
     - keys
 
 - name: Disable SSH password logins
-  sudo: yes
+  become: true
   lineinfile: dest=/etc/ssh/sshd_config regexp="^#?PasswordAuthentication" line="PasswordAuthentication no"
   notify: Restart sshd
   tags: ssh
 
 - name: Upload the SSH banner
-  sudo: yes
+  become: true
   copy: dest=/etc/ssh/ssh_banner src=../files/ssh_banner
   tags: ssh
 
 - name: Set the SSH banner
-  sudo: yes
+  become: true
   lineinfile: dest=/etc/ssh/sshd_config regexp="^#?Banner" line="Banner /etc/ssh/ssh_banner"
   notify: Restart sshd
   tags: ssh
 
 - name: Update apt cache
-  sudo: yes
+  become: true
   apt: update_cache=yes cache_valid_time=900
   tags: apt
 
 - name: Install common packages
-  sudo: yes
+  become: true
   apt: name="{{ item }}" state=present
   with_items:
     - tmux
@@ -69,7 +69,7 @@
 
 # Don't have a GVL Ubuntu 16.04 to test this on; limit to 14.04 ~tc
 - name: Add Logrotate to cron table
-  sudo: yes
+  become: true
   cron: name="run logrotate" minute="0" hour="1" job="/usr/sbin/logrotate /etc/logrotate.conf > /dev/null 2>&1"
   when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "14.04"
 
