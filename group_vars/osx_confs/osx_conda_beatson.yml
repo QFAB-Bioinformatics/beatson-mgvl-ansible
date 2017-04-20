@@ -20,19 +20,21 @@ conda:
       - bwa=0.7.15
       - cairo=1.14.6
       - cd-hit=4.6.6
-      - eigensoft=6.0.1
-      - exonerate=2.2.0
-      - fasttree=2.1.8
+      #- eigensoft=6.0.1 #not available on OS X
+      #- exonerate=2.2.0 #not available on OS X
+      #- fasttree=2.1.8 #alt version for OS X
+      - fasttree=2.1.9
       - fastx_toolkit=0.0.14
       - flex=2.6.0
       - freebayes=1.0.2
       - hmmer=3.1b2
       - infernal=1.1.1
       - isl=0.15
-      - kraken=0.10.5beta
+      #- kraken=0.10.5beta #alt version for OS X
+      - kraken-biom=1.0.1
       - mafft=7.221
       - mash=1.1
-      - megahit=1.0.3
+      #- megahit=1.0.3 #not available on OS X
       - minced=0.2.0
       - mlst=2.6
       - numpy=1.11.2
@@ -65,10 +67,13 @@ conda:
       - xorg-xproto=7.0.31
       - xorg-xtrans=1.3.5
       - blat=36
-      - dsk=2.1.0
+      #- dsk=2.1.0 #alt version for OS X
+      - dsk=2.2.0
       - imagemagick=7.0.5
-      - newick-utils=1.6
-      - phyml=3.2.0
+      #- newick-utils=1.6 #alt channel for OS X
+      - newick_utils=1.6
+      #- phyml=3.2.0 #alt channel for OS X
+      - phyml=3.2.20160530
   -
     name: beatson_py3_ver
     state: present
