@@ -1,6 +1,15 @@
-+==========================================================+
-|====================== Beatson Lab GVL ===================|
-+==========================================================+
-Development Version 0.0.1
+              ,,                               ,,           
+  .g8"""bgd `7MM                             `7MM           
+.dP'     `M   MM                               MM           
+dM'       `   MM   ,pW"Wq.  `7MM  `7MM    ,M""bMM   .d*"*bg.
+MM            MM  6W'   `Wb   MM    MM  ,AP    MM  6MP    Mb
+MM.           MM  8M     M8   MM    MM  8MI    MM  YMb    MM
+`Mb.     ,'   MM  YA.   ,A9   MM    MM  `Mb    MM   `MbmmdM9
+  `"bmmmd'  .JMML. `Ybmd9'    `Mbod"YML. `Wbmd"MML.      .M'
+                                                       .d9  
+        Beatson Lab Cloud Computing Environment       m"'    
+
+
+Version 0.7.1
 
 * Github: https://github.com/QFAB-Bioinformatics/beatson-mgvl-ansible

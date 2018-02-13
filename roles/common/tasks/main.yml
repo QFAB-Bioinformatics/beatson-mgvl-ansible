@@ -27,12 +27,6 @@
     - users
     - keys
 
-- name: Disable SSH password logins
-  become: true
-  lineinfile: dest=/etc/ssh/sshd_config regexp="^#?PasswordAuthentication" line="PasswordAuthentication no"
-  notify: Restart sshd
-  tags: ssh
-
 - name: Upload the SSH banner
   become: true
   copy: dest=/etc/ssh/ssh_banner src=../files/ssh_banner
@@ -66,12 +60,4 @@
     - apt
 
 - include: vim.yml
-
-# Don't have a GVL Ubuntu 16.04 to test this on; limit to 14.04 ~tc
-- name: Add Logrotate to cron table
-  become: true
-  cron: name="run logrotate" minute="0" hour="1" job="/usr/sbin/logrotate /etc/logrotate.conf > /dev/null 2>&1"
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "14.04"
-
-#- include: linuxbrew.yml
 - include: conda.yml

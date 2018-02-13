@@ -1,9 +1,11 @@
 - hosts: all
   remote_user: ubuntu
-  vars:
-    galaxy_tools_tool_list_files:
-    - "../files/tool_list_all.yaml"
-    galaxy_tools_galaxy_instance_url: http://127.0.0.1:8080/
+  become_user: root
+  environment: '{{ inventory__environment | d({})
+                   | combine(inventory__group_environment | d({}))
+                   | combine(inventory__host_environment  | d({})) }}'
   roles:
+    - role: debops.users
+      become: True
+      tags: [ 'role::users' ]
     - ../roles/common
-    #- galaxyprojectdotorg.galaxy-tools

@@ -1,8 +1,0 @@
----
-# defaults file for common
-
-users:
-  - name: ubuntu
-    key: files/keys/server.pub
-    delete_key: files/keys/server.pub.revoked
-

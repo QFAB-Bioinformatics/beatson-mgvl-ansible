@@ -1,2 +1,7 @@
-- src: https://github.com/galaxyproject/ansible-galaxy-tools.git
-  name: galaxyprojectdotorg.galaxy-tools
+- src: https://github.com/debops/ansible-core
+  version: v0.2.7
+  name: debops.core
+
+- src: https://github.com/debops/debops.users
+  version: v0.2.1
+  name: debops.users

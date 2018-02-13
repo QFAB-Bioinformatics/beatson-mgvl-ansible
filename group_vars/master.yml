@@ -1,0 +1,253 @@
+---
+users__groups:
+  - name: 'beatson'
+    gid: '2000'
+    
+users__accounts:
+  - name: 'uqtcudd1'
+    comment: 'Thom Cuddihy'
+    uid: '2004'
+    gid: '2004'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqtcudd1'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqmashc1'
+    comment: 'Melinda Ashcroft'
+    uid: '2005'
+    gid: '2005'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqmashc1'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqrwhi10'
+    comment: 'Rhys White'
+    uid: '2015'
+    gid: '2015'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqrwhi10'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqcbuck2'
+    comment: 'Cameron Buckley'
+    uid: '2017'
+    gid: '2017'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqcbuck2'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqbforde'
+    comment: 'Brian Forde'
+    uid: '2001'
+    gid: '2001'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqbforde'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 's4407811'
+    comment: 'Budi Permana'
+    uid: '2018'
+    gid: '2018'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/s4407811'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqtng107'
+    comment: 'TNhu Nguyen Thi Khanh'
+    uid: '2007'
+    gid: '2007'
+    groups: [ 'beatson' ]
+    shell: '/bin/nologin'
+    home: '/home.roaming/uqtng107'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqaalsh3'
+    comment: 'Areej Alsheikh-Hussain'
+    uid: '2006'
+    gid: '2006'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqaalsh3'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqlomale'
+    comment: 'Lida Omaleki'
+    uid: '2014'
+    gid: '2014'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqlomale'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqlrobe6'
+    comment: 'Leah Roberts'
+    uid: '2008'
+    gid: '2008'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqlrobe6'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+  - name: 'uqsbeats'
+    comment: 'Scott Beatson'
+    uid: '2013'
+    gid: '2013'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/uqsbeats'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
+users:
+  - name: ubuntu
+    key: files/keys/server.pub
+    delete_key: files/keys/server.pub.revoked  
+    
+conda:
+  path: /mnt/transient_nfs/conda/bin
+  environments:
+  - 
+    name: beatson_py2_ver
+    state: present
+    channels: 
+      - qfab
+      - bioconda
+      - conda-forge
+      - r
+    dependencies:
+      - python=2
+      - abricate=0.3
+      - aragorn=1.2.36
+      - barrnap=0.7
+      - bedtools=2.26.0
+      - bison=3.0.4
+      - bwa=0.7.15
+      - cairo=1.14.6
+      - cd-hit=4.6.6
+      - eigensoft=6.0.1
+      - exonerate=2.2.0
+      - fasttree=2.1.8
+      - fastx_toolkit=0.0.14
+      - flex=2.6.0
+      - freebayes=1.0.2
+      - hmmer=3.1b2
+      - infernal=1.1.1
+      - isl=0.15
+      - kraken=0.10.5beta
+      - mafft=7.221
+      - mash=1.1
+      - megahit=1.0.3
+      - minced=0.2.0
+      - mlst=2.6
+      - numpy=1.11.2
+      - picard=2.5.0
+      - poretools=0.6.0
+      - prodigal=2.6.2
+      - prokka=1.11
+      - raxml=8.2.9
+      - samtools=0.1.18
+      - skewer=0.2.2
+      - snippy=3
+      - snpeff=4.2
+      - spades=3.9.0
+      - srst2=0.2.0
+      - trimmomatic=0.36
+      - vcflib=1.0.0_rc0
+      - velvet=1.2.10
+      - cmake=3.6.1
+      - libpng=1.6.26
+      - libtool=2.4.6
+      - libxml2=2.9.4
+      - pixman=0.34.0
+      - pcre=8.38
+      - unzip=6.0
+      - vcftools=0.1.14
+      - xorg-kbproto=1.0.7
+      - xorg-libx11=1.6.4
+      - xorg-libxau=1.0.8
+      - xorg-xextproto=7.3.0
+      - xorg-xproto=7.0.31
+      - xorg-xtrans=1.3.5
+      - blat=36
+      - dsk=2.1.0
+      - imagemagick=7.0.5
+      - newick_utils=1.6
+      - phyml=3.2.0
+  -
+    name: beatson_py3_ver
+    state: present
+    channels:
+      - bioconda
+      - conda-forge
+      - r
+    dependencies:
+      - python=3
+      - samtools=1.3.1
+      - unicycler=0.2.0
+  -
+    name: beatson_py2_test
+    state: present
+    channels:
+      - bioconda
+      - conda-forge
+      - r
+    dependencies:
+      - python=2
+      - abricate=0.3
+      - aragorn=1.2.36
+      - barrnap=0.7
+  -
+    name: beatson_banzai_dev
+    state: present
+    channels:
+      - bioconda
+      - conda-forge
+      - r
+    dependencies:
+      - python=2.7
+      - fabric=1.10.0
+      - matplotlib=2.0.0
+      - biopython=1.68
+      - git=2.8.2
+      - sphinx=1.5.3
+      - screed=0.9
+      - ete2=2.3.10
+      #### needs 'finder' too from apt-get
+
+  environments.test:
+  - 
+    name: stats1
+    state: absent
+    dependencies:
+      - bokeh
+  remove:
+  -
+    name: test
+    state: remove_env
