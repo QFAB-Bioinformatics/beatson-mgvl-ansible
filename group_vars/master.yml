@@ -70,8 +70,19 @@ users__accounts:
     skeleton: '/home.roaming/skeleton'
     state: 'present'
 
+  - name: 's4097594'
+    comment: 'Caitlin'
+    uid: '2019'
+    gid: '2019'
+    groups: [ 'beatson' ]
+    shell: '/bin/bash'
+    home: '/home.roaming/s4097594'
+    createhome: True
+    skeleton: '/home.roaming/skeleton'
+    state: 'present'
+
   - name: 'uqtng107'
-    comment: 'TNhu Nguyen Thi Khanh'
+    comment: 'Nhu Nguyen Thi Khanh'
     uid: '2007'
     gid: '2007'
     groups: [ 'beatson' ]
